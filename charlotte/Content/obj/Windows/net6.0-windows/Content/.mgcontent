@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Working/dev/games/charlotte/charlotte/Content/background.png</File>
+    <File>C:/Working/dev/games/charlotte/charlotte/Content/car_down.png</File>
+    <File>C:/Working/dev/games/charlotte/charlotte/Content/car_left.png</File>
+    <File>C:/Working/dev/games/charlotte/charlotte/Content/car_right.png</File>
+    <File>C:/Working/dev/games/charlotte/charlotte/Content/car_up.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

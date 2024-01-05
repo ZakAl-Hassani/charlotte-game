@@ -1,0 +1,6 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Working/dev/games/charlotte/charlotte/Content/background.png","C:/Working/dev/games/charlotte/charlotte/Content/bin/Windows/Content/background.xnb","TextureProcessor","Texture2DContent",3492472,16000085,1.2855303
+"C:/Working/dev/games/charlotte/charlotte/Content/car_down.png","C:/Working/dev/games/charlotte/charlotte/Content/bin/Windows/Content/car_down.xnb","TextureProcessor","Texture2DContent",41859,105685,0.0200237
+"C:/Working/dev/games/charlotte/charlotte/Content/car_left.png","C:/Working/dev/games/charlotte/charlotte/Content/bin/Windows/Content/car_left.xnb","TextureProcessor","Texture2DContent",40567,105685,0.0188257
+"C:/Working/dev/games/charlotte/charlotte/Content/car_right.png","C:/Working/dev/games/charlotte/charlotte/Content/bin/Windows/Content/car_right.xnb","TextureProcessor","Texture2DContent",40385,105685,0.0147559
+"C:/Working/dev/games/charlotte/charlotte/Content/car_up.png","C:/Working/dev/games/charlotte/charlotte/Content/bin/Windows/Content/car_up.xnb","TextureProcessor","Texture2DContent",41774,105685,0.0211896
