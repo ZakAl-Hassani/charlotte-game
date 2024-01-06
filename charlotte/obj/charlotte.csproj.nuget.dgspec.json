@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Working\\dev\\games\\charlotte_game\\charlotte-game\\charlotte\\charlotte.csproj": {}
+    "C:\\Working\\dev\\games\\charlotte-game\\charlotte\\charlotte.csproj": {}
   },
   "projects": {
-    "C:\\Working\\dev\\games\\charlotte_game\\charlotte-game\\charlotte\\charlotte.csproj": {
+    "C:\\Working\\dev\\games\\charlotte-game\\charlotte\\charlotte.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Working\\dev\\games\\charlotte_game\\charlotte-game\\charlotte\\charlotte.csproj",
+        "projectUniqueName": "C:\\Working\\dev\\games\\charlotte-game\\charlotte\\charlotte.csproj",
         "projectName": "charlotte",
-        "projectPath": "C:\\Working\\dev\\games\\charlotte_game\\charlotte-game\\charlotte\\charlotte.csproj",
+        "projectPath": "C:\\Working\\dev\\games\\charlotte-game\\charlotte\\charlotte.csproj",
         "packagesPath": "C:\\Users\\zak\\.nuget\\packages\\",
-        "outputPath": "C:\\Working\\dev\\games\\charlotte_game\\charlotte-game\\charlotte\\obj\\",
+        "outputPath": "C:\\Working\\dev\\games\\charlotte-game\\charlotte\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -24,7 +24,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0-windows"
+          "net6.0-windows7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -62,8 +62,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -75,7 +74,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

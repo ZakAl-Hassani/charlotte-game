@@ -4,11 +4,11 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Working/dev/games/charlotte/charlotte/Content/background.png</File>
-    <File>C:/Working/dev/games/charlotte/charlotte/Content/car_down.png</File>
-    <File>C:/Working/dev/games/charlotte/charlotte/Content/car_left.png</File>
-    <File>C:/Working/dev/games/charlotte/charlotte/Content/car_right.png</File>
-    <File>C:/Working/dev/games/charlotte/charlotte/Content/car_up.png</File>
+    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/background.png</File>
+    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/car_down.png</File>
+    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/car_left.png</File>
+    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/car_right.png</File>
+    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/car_up.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />

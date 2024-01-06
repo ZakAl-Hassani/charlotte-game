@@ -18,7 +18,7 @@ namespace charlotte
         Texture2D map;
         Vector2 position;
         Vector2 mapPosition;
-        float speed = 300f;
+        float speed = 1000f;
 
         public Game1()
         {

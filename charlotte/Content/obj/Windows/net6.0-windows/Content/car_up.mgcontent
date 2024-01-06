@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Working/dev/games/charlotte/charlotte/Content/car_up.png</SourceFile>
-  <SourceTime>2024-01-05T21:14:16.0176608+00:00</SourceTime>
-  <DestFile>C:/Working/dev/games/charlotte/charlotte/Content/bin/Windows/Content/car_up.xnb</DestFile>
-  <DestTime>2024-01-05T21:39:02.0664192+00:00</DestTime>
+  <SourceFile>C:/Working/dev/games/charlotte-game/charlotte/Content/car_up.png</SourceFile>
+  <SourceTime>2024-01-06T14:08:09.7984163+00:00</SourceTime>
+  <DestFile>C:/Working/dev/games/charlotte-game/charlotte/Content/bin/Windows/Content/car_up.xnb</DestFile>
+  <DestTime>2024-01-06T14:08:52.7766998+00:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2022-07-26T12:44:56+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
