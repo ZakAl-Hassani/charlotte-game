@@ -41,10 +41,6 @@ C:\Working\dev\games\charlotte\charlotte\bin\Debug\net6.0-windows\Content\car_le
 C:\Working\dev\games\charlotte\charlotte\bin\Debug\net6.0-windows\Content\car_right.xnb
 C:\Working\dev\games\charlotte\charlotte\bin\Debug\net6.0-windows\Content\car_up.xnb
 C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\Content\background.xnb
-C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\Content\car_down.xnb
-C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\Content\car_left.xnb
-C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\Content\car_right.xnb
-C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\Content\car_up.xnb
 C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\charlotte.exe
 C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\charlotte.deps.json
 C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\charlotte.runtimeconfig.json

@@ -13,16 +13,11 @@ namespace charlotte
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         Texture2D player;
-        Texture2D car_up;
-        Texture2D car_down;
-        Texture2D car_left;
-        Texture2D car_right;
         Texture2D map;
         Vector2 position;
         float rotation;
         float angle;
         Vector2 mapPosition;
-        Vector2 carCenter;
         
         float speed = 200f;
 
