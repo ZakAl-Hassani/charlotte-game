@@ -71,6 +71,7 @@ namespace charlotte
 
             Sprite copcarSprite = sprites[0];
             copcarSprite.Rotation = 0f;
+            copcarSprite.Speed = 100f;
             copcarSprite.Position = new Vector2(_graphics.PreferredBackBufferWidth / 4, _graphics.PreferredBackBufferHeight / 4);
             sprites[0] = copcarSprite;
 
@@ -84,7 +85,7 @@ namespace charlotte
             var kstate = Keyboard.GetState();
             foreach (var sprite in sprites)
             {
-                sprite.Update(gameTime);
+                sprite.Update(gameTime, _graphics);
             }
             player.Update(gameTime, kstate, _graphics, sprites);
 

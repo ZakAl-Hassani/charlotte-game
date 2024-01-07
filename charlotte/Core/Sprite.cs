@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
@@ -21,6 +22,9 @@ namespace charlotte.Core
         public float Rotation;
         public float RotationAngle;
         public Input Input;
+
+        protected int movesBeforeChange = 3;
+        protected int turnsBeforeChange = 50;
 
         public Sprite(Texture2D texture)
         {
@@ -47,9 +51,33 @@ namespace charlotte.Core
         }
 
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, GraphicsDeviceManager _graphics)
         {
+            if (movesBeforeChange == 0)
+            {
+                movesBeforeChange = 3;
 
+                if (turnsBeforeChange == 0)
+                {
+                    turnsBeforeChange = 50;
+                   
+                    if (DateTime.Now.Ticks % 2 == 0)
+                    {
+                        RotationAngle = RotationAngle * -1;
+                    }
+
+                } else
+                {
+                    turnsBeforeChange -= 1;
+                }
+
+                Rotation += RotationAngle;
+            } else
+            {
+                Position.Y -= Speed * (float)(Math.Cos(Rotation)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                Position.X += Speed * (float)(Math.Sin(Rotation)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                movesBeforeChange -= 1;
+            }
         }
 
         public virtual void Update(GameTime gameTime, KeyboardState kstate, GraphicsDeviceManager _graphics, List<Sprite> sprites) {
