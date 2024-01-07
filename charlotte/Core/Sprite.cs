@@ -68,27 +68,30 @@ namespace charlotte.Core
             if (kstate.IsKeyDown(Keys.Left))
             {
                 Rotation -= RotationAngle;
-                if (Rotation == -360f || Rotation == 360f)
-                {
-                    Rotation = 0f;
-                }
             }
             if (kstate.IsKeyDown(Keys.Right))
             {
                 Rotation += RotationAngle;
-                if (Rotation == -360f || Rotation == 360f)
-                {
-                    Rotation = 0f;
-                }
             }
-            if (kstate.IsKeyDown(Keys.Space))
+
+            /* Keep rotation always around the 360 mark */ 
+            if (Rotation == -360f || Rotation == 360f)
             {
                 Rotation = 0f;
-                RotationAngle = 0.05f;
-                Speed = 200f;
-                _texture = _nonCrashedText;
-                Position.X = _graphics.PreferredBackBufferWidth / 2;
-                Position.Y = _graphics.PreferredBackBufferHeight / 2;
+            }
+
+            /* This is where I reset the car once it has crashed and the space bar is then pressed */
+            if (kstate.IsKeyDown(Keys.Space))
+            {
+                if (Speed == 0f)
+                {
+                    Rotation = 0f;
+                    RotationAngle = 0.05f;
+                    Speed = 200f;
+                    _texture = _nonCrashedText;
+                    Position.X = _graphics.PreferredBackBufferWidth / 2;
+                    Position.Y = _graphics.PreferredBackBufferHeight / 2;
+                }
             }
 
             if (_texture != null)
