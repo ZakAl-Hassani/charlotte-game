@@ -48,12 +48,6 @@ namespace charlotte
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
-            //= new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
-            //rotation = 0f;
-            //angle = 0.05f;
-
-
             mapPosition = new Vector2(0, 0);
 
             base.Initialize();
@@ -111,10 +105,6 @@ namespace charlotte
             }
             player.Draw(_spriteBatch);
 
-            //_spriteBatch.Draw(copcar, copcar_position, null, Color.White,
-            //    copcar_rotation, new Vector2(copcar.Width / 2, copcar.Height / 2), Vector2.One, SpriteEffects.None, 0f);
-            //_spriteBatch.Draw(player, position, null, Color.White,
-            //    rotation, new Vector2(player.Width / 2, player.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             _spriteBatch.End();
 
             base.Draw(gameTime);
