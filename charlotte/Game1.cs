@@ -63,17 +63,36 @@ namespace charlotte
             copcar = Content.Load<Texture2D>("copcar");
             map = Content.Load<Texture2D>("MapTile_0_0");
 
-            sprites = new List<Sprite>();
-            sprites.Add(new Sprite(copcar));
+            //sprites = new List<Sprite>();
+            //sprites.Add(new Sprite(copcar));
 
             player = new Player(playerTexture, playerTexture_crash);
             player.Position = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
 
-            Sprite copcarSprite = sprites[0];
-            copcarSprite.Rotation = 0f;
-            copcarSprite.Speed = 100f;
-            copcarSprite.Position = new Vector2(_graphics.PreferredBackBufferWidth / 4, _graphics.PreferredBackBufferHeight / 4);
-            sprites[0] = copcarSprite;
+            //Sprite copcarSprite = new Sprite(copcar);
+
+            //copcarSprite.Rotation = 0f;
+            //copcarSprite.Speed = 100f;
+            
+
+            sprites = new List<Sprite>();
+
+            //copcarSprite.Position = new Vector2(_graphics.PreferredBackBufferWidth / 4, _graphics.PreferredBackBufferHeight / 4);
+            //sprites.Add(copcarSprite);
+
+            Random random = new Random();
+            
+            for (int i = 0; i < 30; i++)
+            {
+                int randomX = random.Next(0, 1800);
+                int randomY = random.Next(0, 1800);
+
+                var sprite = new Sprite(copcar);
+                sprite.Rotation = 0f;
+                sprite.Speed = 100f;
+                sprite.Position = new Vector2(randomX, randomY);
+                sprites.Add(sprite);
+            }
 
         }
 
