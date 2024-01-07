@@ -49,7 +49,6 @@ C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\charlotte
 C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\charlotte.deps.json
 C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\charlotte.runtimeconfig.json
 C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\charlotte.dll
-C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\ref\charlotte.dll
 C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\charlotte.pdb
 C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\Microsoft.CodeAnalysis.dll
 C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\Microsoft.CodeAnalysis.CSharp.dll
@@ -82,3 +81,7 @@ C:\Working\dev\games\charlotte-game\charlotte\obj\Debug\net6.0-windows\charlotte
 C:\Working\dev\games\charlotte-game\charlotte\obj\Debug\net6.0-windows\ref\charlotte.dll
 C:\Working\dev\games\charlotte-game\charlotte\obj\Debug\net6.0-windows\charlotte.pdb
 C:\Working\dev\games\charlotte-game\charlotte\obj\Debug\net6.0-windows\charlotte.genruntimeconfig.cache
+C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\Content\MapTile_0_0.xnb
+C:\Working\dev\games\charlotte-game\charlotte\obj\Debug\net6.0-windows\charlotte.sourcelink.json
+C:\Working\dev\games\charlotte-game\charlotte\obj\Debug\net6.0-windows\refint\charlotte.dll
+C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\Content\car.xnb

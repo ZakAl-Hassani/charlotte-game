@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Drawing.Drawing2D;
 
 namespace charlotte
 {
@@ -17,14 +19,18 @@ namespace charlotte
         Texture2D car_right;
         Texture2D map;
         Vector2 position;
+        float rotation;
+        float angle;
         Vector2 mapPosition;
-        float speed = 1000f;
+        Vector2 carCenter;
+        
+        float speed = 200f;
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferHeight = 2000;
-            _graphics.PreferredBackBufferWidth = 2000;
+            _graphics.PreferredBackBufferHeight = 1800;
+            _graphics.PreferredBackBufferWidth = 1800;
 
             Content.RootDirectory = "Content";
             
@@ -36,6 +42,8 @@ namespace charlotte
         {
             // TODO: Add your initialization logic here
             position = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
+            rotation = 0f;
+            angle = 0.05f;
             mapPosition = new Vector2(0, 0);
 
             base.Initialize();
@@ -46,12 +54,8 @@ namespace charlotte
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            player = Content.Load<Texture2D>("car_up");
-            car_up = Content.Load<Texture2D>("car_up");
-            car_down = Content.Load<Texture2D>("car_down");
-            car_left = Content.Load<Texture2D>("car_left");
-            car_right = Content.Load<Texture2D>("car_right");
-            map = Content.Load<Texture2D>("background");
+            player = Content.Load<Texture2D>("car");
+            map = Content.Load<Texture2D>("MapTile_0_0");
         }
 
         protected override void Update(GameTime gameTime)
@@ -63,27 +67,29 @@ namespace charlotte
             var kstate = Keyboard.GetState();
             if (kstate.IsKeyDown(Keys.Up))
             {
-                position.Y -= speed *
-               (float)gameTime.ElapsedGameTime.TotalSeconds;
-                player = car_up;
+                position.Y -= speed * (float)(Math.Cos(rotation)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                position.X += speed * (float)(Math.Sin(rotation)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             if (kstate.IsKeyDown(Keys.Down))
             {
-                position.Y += speed *
-               (float)gameTime.ElapsedGameTime.TotalSeconds;
-                player = car_down;
+                position.Y += speed * (float)(Math.Cos(rotation)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                position.X -= speed * (float)(Math.Sin(rotation)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
             if (kstate.IsKeyDown(Keys.Left))
             {
-                position.X -= speed *
-               (float)gameTime.ElapsedGameTime.TotalSeconds;
-                player = car_left;
+                rotation -= angle;
+                if (rotation == -360f || rotation == 360f)
+                {
+                    rotation = 0f;
+                }
             }
             if (kstate.IsKeyDown(Keys.Right))
             {
-                position.X += speed *
-               (float)gameTime.ElapsedGameTime.TotalSeconds;
-                player = car_right;
+                rotation += angle;
+                if (rotation == -360f || rotation == 360f)
+                {
+                    rotation = 0f;
+                }
             }
             if (position.X > _graphics.PreferredBackBufferWidth -
            player.Width / 2)
@@ -117,8 +123,8 @@ namespace charlotte
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
             _spriteBatch.Draw(map, mapPosition, null, Color.White);
-            _spriteBatch.Draw(player, position, null, Color.White, 
-                0f, new Vector2(player.Width / 2, player.Height / 2), Vector2.One, SpriteEffects.None, 0f);
+            _spriteBatch.Draw(player, position, null, Color.White,
+                rotation, new Vector2(player.Width / 2, player.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             _spriteBatch.End();
 
             base.Draw(gameTime);
