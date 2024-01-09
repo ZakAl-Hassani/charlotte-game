@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
@@ -17,20 +18,24 @@ namespace charlotte.Core
         protected Texture2D _texture;
         protected Texture2D _nonCrashedText;
         protected Texture2D _crashTexture;
+        protected Vector2 _startPosition;
         public Vector2 Position;
         public float Speed;
+        public Vector2 Velocity;
         public float Rotation;
         public float RotationAngle;
         public Input Input;
 
-        protected int movesBeforeChange = 3;
-        protected int turnsBeforeChange = 50;
+        protected int movesBeforeChange = 0;
+        protected int turnsBeforeChange = 10;
 
         public Sprite(Texture2D texture)
         {
             _texture = texture;
+            _nonCrashedText = texture;
             Rotation = 0f;
             RotationAngle = 0.05f;
+            Velocity = new Vector2(0, 0);
         }
 
         public Sprite(Texture2D texture, Texture2D crashTexture)
@@ -39,7 +44,19 @@ namespace charlotte.Core
             _nonCrashedText = texture;
             Rotation = 0f;
             RotationAngle = 0.05f;
+            Velocity = new Vector2(0, 0);
             _crashTexture = crashTexture;
+        }
+
+        public Sprite(Texture2D texture, Texture2D crashTexture, Vector2 startPosition)
+        {
+            _texture = texture;
+            _nonCrashedText = texture;
+            Rotation = 0f;
+            RotationAngle = 0.05f;
+            Velocity = new Vector2(0, 0);
+            _crashTexture = crashTexture;
+
         }
 
         public Rectangle Rectangle
@@ -51,77 +68,39 @@ namespace charlotte.Core
         }
 
 
-        public virtual void Update(GameTime gameTime, GraphicsDeviceManager _graphics)
-        {
-            if (movesBeforeChange == 0)
+
+        public virtual void Update(GameTime gameTime) { }
+
+        public virtual void Draw(SpriteBatch spriteBatch) {
+            if (_texture != null)
             {
-                movesBeforeChange = 3;
-
-                if (turnsBeforeChange == 0)
-                {
-                    turnsBeforeChange = 50;
-                   
-                    if (DateTime.Now.Ticks % 2 == 0)
-                    {
-                        RotationAngle = RotationAngle * -1;
-                    }
-
-                } else
-                {
-                    turnsBeforeChange -= 1;
-                }
-
-                Rotation += RotationAngle;
-            } else
-            {
-                Position.Y -= Speed * (float)(Math.Cos(Rotation)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                Position.X += Speed * (float)(Math.Sin(Rotation)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                movesBeforeChange -= 1;
+                spriteBatch.Draw(_texture, Position, null, Color.White,
+                    Rotation, new Vector2(_texture.Width / 2, _texture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             }
         }
 
-        public virtual void Update(GameTime gameTime, KeyboardState kstate, GraphicsDeviceManager _graphics, List<Sprite> sprites) {
-
-            if (kstate.IsKeyDown(Keys.Up))
+        public virtual void DetectCollision(List<Sprite> sprites)
+        {
+            if (_texture != null )
             {
-                Position.Y -= Speed * (float)(Math.Cos(Rotation)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                Position.X += Speed * (float)(Math.Sin(Rotation)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                
-            }
-            if (kstate.IsKeyDown(Keys.Down))
-            {
-                Position.Y += Speed * (float)(Math.Cos(Rotation)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                Position.X -= Speed * (float)(Math.Sin(Rotation)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            }
-            if (kstate.IsKeyDown(Keys.Left))
-            {
-                Rotation -= RotationAngle;
-            }
-            if (kstate.IsKeyDown(Keys.Right))
-            {
-                Rotation += RotationAngle;
-            }
-
-            /* Keep rotation always around the 360 mark */ 
-            if (Rotation == -360f || Rotation == 360f)
-            {
-                Rotation = 0f;
-            }
-
-            /* This is where I reset the car once it has crashed and the space bar is then pressed */
-            if (kstate.IsKeyDown(Keys.Space))
-            {
-                if (Speed == 0f)
+                foreach (var sprite in sprites)
                 {
-                    Rotation = 0f;
-                    RotationAngle = 0.05f;
-                    Speed = 200f;
-                    _texture = _nonCrashedText;
-                    Position.X = _graphics.PreferredBackBufferWidth / 2;
-                    Position.Y = _graphics.PreferredBackBufferHeight / 2;
+                    if ((Position.Y - _texture.Height / 2f < sprite.Position.Y + sprite.Rectangle.Height / 2f)
+                        && (Position.Y + _texture.Height / 2f > sprite.Position.Y - sprite.Rectangle.Height / 2f)
+                        && (Position.X - _texture.Width / 2f < sprite.Position.X + sprite.Rectangle.Width / 2f)
+                        && (Position.X + _texture.Width / 2f > sprite.Position.X - sprite.Rectangle.Width / 2f)
+                        )
+                    {
+                        _texture = _crashTexture;
+                        Speed = 0;
+                        RotationAngle = 0;
+                    }
                 }
             }
+        }
 
+        public virtual void StayWithinScreen(GraphicsDeviceManager _graphics)
+        {
             if (_texture != null)
             {
                 if (Position.X > _graphics.PreferredBackBufferWidth - _texture.Width / 2)
@@ -140,32 +119,6 @@ namespace charlotte.Core
                 {
                     Position.Y = _texture.Height / 2;
                 }
-
-
-                foreach (var sprite in sprites)
-                {
-                    if ((Position.Y - _texture.Height / 2f < sprite.Position.Y + sprite.Rectangle.Height / 2f)
-                        && (Position.Y + _texture.Height / 2f > sprite.Position.Y - sprite.Rectangle.Height / 2f)
-                        && (Position.X - _texture.Width / 2f < sprite.Position.X + sprite.Rectangle.Width / 2f)
-                        && (Position.X + _texture.Width / 2f > sprite.Position.X - sprite.Rectangle.Width / 2f)
-                        )
-                    {
-                        _texture = _crashTexture;
-                        Speed = 0;
-                        RotationAngle = 0;
-                    }
-                }
-            }
-            
-
-
-        }
-
-        public virtual void Draw(SpriteBatch spriteBatch) {
-            if (_texture != null)
-            {
-                spriteBatch.Draw(_texture, Position, null, Color.White,
-                    Rotation, new Vector2(_texture.Width / 2, _texture.Height / 2), Vector2.One, SpriteEffects.None, 0f);
             }
         }
     }

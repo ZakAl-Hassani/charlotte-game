@@ -23,15 +23,8 @@ namespace charlotte
         List<Sprite> sprites;
 
         Texture2D copcar;
-        Vector2 copcar_position;
-        float copcar_rotation;
         Texture2D map;
-        //Vector2 position;
-        //float rotation;
-        //float angle;
         Vector2 mapPosition;
-        
-        float speed = 200f;
 
         public Game1()
         {
@@ -63,22 +56,11 @@ namespace charlotte
             copcar = Content.Load<Texture2D>("copcar");
             map = Content.Load<Texture2D>("MapTile_0_0");
 
-            //sprites = new List<Sprite>();
-            //sprites.Add(new Sprite(copcar));
-
-            player = new Player(playerTexture, playerTexture_crash);
+            player = new Player(playerTexture, playerTexture_crash, new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2));
             player.Position = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
 
-            //Sprite copcarSprite = new Sprite(copcar);
-
-            //copcarSprite.Rotation = 0f;
-            //copcarSprite.Speed = 100f;
-            
-
+            /* Set up police cars */
             sprites = new List<Sprite>();
-
-            //copcarSprite.Position = new Vector2(_graphics.PreferredBackBufferWidth / 4, _graphics.PreferredBackBufferHeight / 4);
-            //sprites.Add(copcarSprite);
 
             Random random = new Random();
             
@@ -87,7 +69,7 @@ namespace charlotte
                 int randomX = random.Next(0, 1800);
                 int randomY = random.Next(0, 1800);
 
-                var sprite = new Sprite(copcar);
+                var sprite = new PoliceCar(copcar, copcar, new Vector2(randomX, randomY));
                 sprite.Rotation = 0f;
                 sprite.Speed = 100f;
                 sprite.Position = new Vector2(randomX, randomY);
@@ -104,10 +86,13 @@ namespace charlotte
             var kstate = Keyboard.GetState();
             foreach (var sprite in sprites)
             {
-                sprite.Update(gameTime, _graphics);
+                sprite.Update(gameTime);
+                sprite.StayWithinScreen(_graphics);
             }
-            player.Update(gameTime, kstate, _graphics, sprites);
-
+            player.Update(gameTime);
+            player.DetectCollision(sprites);
+            player.StayWithinScreen(_graphics);
+            
             base.Update(gameTime);
         }
 
