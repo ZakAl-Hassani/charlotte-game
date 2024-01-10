@@ -23,8 +23,9 @@ namespace charlotte
         List<Sprite> sprites;
 
         Texture2D copcar;
-        Texture2D map;
-        Vector2 mapPosition;
+        Level level;
+        Score score;
+
 
         public Game1()
         {
@@ -41,7 +42,6 @@ namespace charlotte
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            mapPosition = new Vector2(0, 0);
 
             base.Initialize();
         }
@@ -54,7 +54,16 @@ namespace charlotte
             playerTexture = Content.Load<Texture2D>("car");
             playerTexture_crash = Content.Load<Texture2D>("carcrash");
             copcar = Content.Load<Texture2D>("copcar");
-            map = Content.Load<Texture2D>("MapTile_0_0");
+
+
+            /* Load levels */
+            List<Texture2D> levels = new List<Texture2D>();
+            levels.Add(Content.Load<Texture2D>("MapTile_0_0"));
+            levels.Add(Content.Load<Texture2D>("Level2"));
+            level = new Level(levels);
+
+            /* Initialise score */
+            score = new Score(Content.Load<Texture2D>("ScoreList"));
 
             player = new Player(playerTexture, playerTexture_crash, new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2));
             player.Position = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
@@ -84,6 +93,17 @@ namespace charlotte
                 Exit();
 
             var kstate = Keyboard.GetState();
+            if (kstate.IsKeyDown(Keys.L))
+            {
+                if (level.LevelNumber == 1) {
+                    level.SetLevel(2);
+                } else
+                {
+                    level.SetLevel(1);
+                }
+                    
+            }
+
             foreach (var sprite in sprites)
             {
                 sprite.Update(gameTime);
@@ -102,13 +122,16 @@ namespace charlotte
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
-            _spriteBatch.Draw(map, mapPosition, null, Color.White);
+
+            level.Draw(_spriteBatch);
+            
             
             foreach(var sprite in sprites)
             {
                 sprite.Draw(_spriteBatch);
             }
             player.Draw(_spriteBatch);
+            score.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

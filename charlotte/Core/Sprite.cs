@@ -56,6 +56,7 @@ namespace charlotte.Core
             RotationAngle = 0.05f;
             Velocity = new Vector2(0, 0);
             _crashTexture = crashTexture;
+            _startPosition = startPosition;
 
         }
 

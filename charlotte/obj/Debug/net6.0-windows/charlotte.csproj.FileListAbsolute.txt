@@ -83,3 +83,5 @@ C:\Working\dev\games\charlotte-game\charlotte\obj\Debug\net6.0-windows\refint\ch
 C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\Content\car.xnb
 C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\Content\copcar.xnb
 C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\Content\carcrash.xnb
+C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\Content\Level2.xnb
+C:\Working\dev\games\charlotte-game\charlotte\bin\Debug\net6.0-windows\Content\ScoreList.xnb
