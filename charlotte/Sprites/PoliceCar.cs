@@ -1,5 +1,6 @@
 ﻿using charlotte.Core;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,26 @@ namespace charlotte.Sprites
 {
     public class PoliceCar : Sprite
     {
-        public PoliceCar(Texture2D texture, Texture2D crashTexture, Vector2 startPosition) : base(texture, crashTexture, startPosition)
+        private float _initialSpeed = 100f;
+        private float _initialRotationAngle = 0.05f;
+
+        public PoliceCar(ContentManager content, GraphicsDeviceManager graphics) : base(content, graphics)
         {
-            
+            this.Speed = _initialSpeed;
+            this.Rotation = random.Next(0, 359);
+            this.RotationAngle = _initialRotationAngle;
+
+            int randomX = random.Next(0, 1800);
+            int randomY = random.Next(0, 1800);
+
+            this._startPosition = new Vector2(randomX, randomY);
+            Position = _startPosition;
+        }
+
+        public override void LoadContent()
+        {
+            _texture = _content.Load<Texture2D>("Cars/copcar");
+            _crashTexture = _content.Load<Texture2D>("Cars/copcarcrash");
         }
 
         public override void Update(GameTime gameTime)

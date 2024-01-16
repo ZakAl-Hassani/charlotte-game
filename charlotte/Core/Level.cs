@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using SharpDX.Direct3D9;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +12,19 @@ namespace charlotte.Core
 {
     public class Level
     {
+        protected ContentManager _content;
+        protected string _mapName;
         protected Texture2D _map;
         protected Vector2 _position;
-        protected List<Texture2D> _levels = new List<Texture2D>();
         public int LevelNumber = 1;
+
+
+        public Level(ContentManager content, string mapName)
+        {
+            _mapName = mapName;
+            _position = new Vector2(0, 0);
+            _content = content;
+        }
 
         public Level(Texture2D map)
         {
@@ -21,21 +32,9 @@ namespace charlotte.Core
             _position = new Vector2(0, 0);
         }
 
-        public Level(List<Texture2D> levelMaps)
+        public virtual void LoadContent()
         {
-            if (levelMaps.Count >= 0)
-            {
-                _map = levelMaps[0];
-                _levels = levelMaps;
-            }
-
-            _position = new Vector2(0, 0);
-        }
-
-        public virtual void SetLevel(int levelNumber)
-        {
-            _map = _levels[levelNumber - 1];
-            LevelNumber = levelNumber;
+            _map = _content.Load<Texture2D>(_mapName);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

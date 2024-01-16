@@ -4,15 +4,19 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/background.png</File>
-    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/car.png</File>
-    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/carcrash.png</File>
-    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/copcar.png</File>
-    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/Level2.png</File>
-    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/MapTile_0_0.png</File>
-    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/ScoreList.png</File>
+    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/Cars/car.png</File>
+    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/Cars/carcrash.png</File>
+    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/Cars/copcar.png</File>
+    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/Cars/copcarcrash.png</File>
+    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/Fonts/Font.spritefont</File>
+    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/Maps/Level2.png</File>
+    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/Maps/MapTile_0_0.png</File>
+    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/Other/coin.png</File>
+    <File>C:/Working/dev/games/charlotte-game/charlotte/Content/Other/coincrash.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

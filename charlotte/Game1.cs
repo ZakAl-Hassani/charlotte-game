@@ -16,14 +16,15 @@ namespace charlotte
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        Texture2D playerTexture;
-        Texture2D playerTexture_crash;
 
         Player player;
-        List<Sprite> sprites;
+        List<Sprite> policeCars;
+        List<Sprite> coins;
+        
 
-        Texture2D copcar;
-        Level level;
+        GameEngine engine;
+        List<Level> levels;
+        //Level level;
         Score score;
 
 
@@ -42,6 +43,29 @@ namespace charlotte
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            engine = new GameEngine();
+
+            score = new Score(Content, _graphics);
+
+            /* Levels */
+            levels = new List<Level>();
+            levels.Add(new Level(Content, "Maps/MapTile_0_0"));
+            levels.Add(new Level(Content, "Maps/Level2"));
+            engine.AddLevels(levels);
+
+            /* Player */
+            player = new Player(Content, _graphics);
+            player.Position = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
+
+            /* Set up police cars */
+            policeCars = new List<Sprite>();
+            coins = new List<Sprite>();
+            
+            for (int i = 0; i < 30; i++)
+            {
+                policeCars.Add(new PoliceCar(Content, _graphics));
+                coins.Add(new Coin(Content, _graphics));
+            }
 
             base.Initialize();
         }
@@ -51,38 +75,23 @@ namespace charlotte
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            playerTexture = Content.Load<Texture2D>("car");
-            playerTexture_crash = Content.Load<Texture2D>("carcrash");
-            copcar = Content.Load<Texture2D>("copcar");
-
 
             /* Load levels */
-            List<Texture2D> levels = new List<Texture2D>();
-            levels.Add(Content.Load<Texture2D>("MapTile_0_0"));
-            levels.Add(Content.Load<Texture2D>("Level2"));
-            level = new Level(levels);
+            foreach (var level in levels)
+            {
+                level.LoadContent();
+            }
 
             /* Initialise score */
-            score = new Score(Content.Load<Texture2D>("ScoreList"));
-
-            player = new Player(playerTexture, playerTexture_crash, new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2));
-            player.Position = new Vector2(_graphics.PreferredBackBufferWidth / 2, _graphics.PreferredBackBufferHeight / 2);
-
-            /* Set up police cars */
-            sprites = new List<Sprite>();
-
-            Random random = new Random();
-            
-            for (int i = 0; i < 30; i++)
+            score.LoadContent();
+            player.LoadContent();
+            foreach(var policeCar in policeCars)
             {
-                int randomX = random.Next(0, 1800);
-                int randomY = random.Next(0, 1800);
-
-                var sprite = new PoliceCar(copcar, copcar, new Vector2(randomX, randomY));
-                sprite.Rotation = 0f;
-                sprite.Speed = 100f;
-                sprite.Position = new Vector2(randomX, randomY);
-                sprites.Add(sprite);
+                policeCar.LoadContent();
+            }
+            foreach(var coin in coins)
+            {
+                coin.LoadContent();
             }
 
         }
@@ -95,23 +104,40 @@ namespace charlotte
             var kstate = Keyboard.GetState();
             if (kstate.IsKeyDown(Keys.L))
             {
-                if (level.LevelNumber == 1) {
-                    level.SetLevel(2);
+                if (engine.LevelNumber == 1) {
+                    engine.SetLevel(2);
                 } else
                 {
-                    level.SetLevel(1);
-                }
-                    
+                    engine.SetLevel(1);
+                }   
             }
 
-            foreach (var sprite in sprites)
+            foreach (var policeCar in policeCars)
             {
-                sprite.Update(gameTime);
-                sprite.StayWithinScreen(_graphics);
+                policeCar.Update(gameTime);
+                policeCar.StayWithinScreen(_graphics);
             }
+
             player.Update(gameTime);
-            player.DetectCollision(sprites);
+            player.DetectCollision(policeCars);
             player.StayWithinScreen(_graphics);
+
+            List<Sprite> playerList = new List<Sprite>();
+            playerList.Add(player);
+            foreach (var coin in coins)
+            {
+                
+                var coinHit =  coin.DetectCollision(playerList);
+                if (coinHit && !coin.Collected)
+                {
+                    player.Score = player.Score + 1;
+                    coin.Collected = true;
+                }
+                coin.Update(gameTime);
+            }
+
+            score.SetScore(player.Score);
+            score.SetLives(player.Lives);
             
             base.Update(gameTime);
         }
@@ -123,13 +149,19 @@ namespace charlotte
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
 
-            level.Draw(_spriteBatch);
+            engine.Level.Draw(_spriteBatch);
             
             
-            foreach(var sprite in sprites)
+            foreach(var policeCar in policeCars)
             {
-                sprite.Draw(_spriteBatch);
+                policeCar.Draw(_spriteBatch);
             }
+
+            foreach(var coin in coins)
+            {
+                coin.Draw(_spriteBatch);
+            }
+
             player.Draw(_spriteBatch);
             score.Draw(_spriteBatch);
 
